@@ -13,6 +13,8 @@
 		9A9119DC2AEA492700CBB8EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A9119DB2AEA492700CBB8EF /* Preview Assets.xcassets */; };
 		9A9119DE2AEA492700CBB8EF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9119DD2AEA492700CBB8EF /* Persistence.swift */; };
 		9A9119E12AEA492700CBB8EF /* expenseTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A9119DF2AEA492700CBB8EF /* expenseTracker.xcdatamodeld */; };
+		9A9119E82AEA4A6400CBB8EF /* logExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9119E72AEA4A6400CBB8EF /* logExpensesView.swift */; };
+		9AF36FBB2AEADA1F00406F7E /* expenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF36FBA2AEADA1F00406F7E /* expenseDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		9A9119DB2AEA492700CBB8EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9A9119DD2AEA492700CBB8EF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		9A9119E02AEA492700CBB8EF /* expenseTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = expenseTracker.xcdatamodel; sourceTree = "<group>"; };
+		9A9119E72AEA4A6400CBB8EF /* logExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logExpensesView.swift; sourceTree = "<group>"; };
+		9AF36FBA2AEADA1F00406F7E /* expenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expenseDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 		9A9119D32AEA491B00CBB8EF /* expenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				9A9119E72AEA4A6400CBB8EF /* logExpensesView.swift */,
+				9AF36FBA2AEADA1F00406F7E /* expenseDetailView.swift */,
 				9A9119D42AEA491B00CBB8EF /* expenseTrackerApp.swift */,
 				9A9119D62AEA491B00CBB8EF /* ContentView.swift */,
 				9A9119D82AEA492700CBB8EF /* Assets.xcassets */,
@@ -143,7 +149,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A9119E82AEA4A6400CBB8EF /* logExpensesView.swift in Sources */,
 				9A9119DE2AEA492700CBB8EF /* Persistence.swift in Sources */,
+				9AF36FBB2AEADA1F00406F7E /* expenseDetailView.swift in Sources */,
 				9A9119D72AEA491B00CBB8EF /* ContentView.swift in Sources */,
 				9A9119D52AEA491B00CBB8EF /* expenseTrackerApp.swift in Sources */,
 				9A9119E12AEA492700CBB8EF /* expenseTracker.xcdatamodeld in Sources */,
