@@ -13,6 +13,7 @@ struct ExpenseDetailView: View {
 
     var body: some View {
         VStack {
+         
             Text("Expense Details")
                 .font(.title)
                 .padding()

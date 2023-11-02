@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A57E2242AF40EA800D474C1 /* categorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A57E2232AF40EA800D474C1 /* categorizationView.swift */; };
 		9A9119D52AEA491B00CBB8EF /* expenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9119D42AEA491B00CBB8EF /* expenseTrackerApp.swift */; };
 		9A9119D72AEA491B00CBB8EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9119D62AEA491B00CBB8EF /* ContentView.swift */; };
 		9A9119D92AEA492700CBB8EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A9119D82AEA492700CBB8EF /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A57E2232AF40EA800D474C1 /* categorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categorizationView.swift; sourceTree = "<group>"; };
 		9A9119D12AEA491B00CBB8EF /* expenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = expenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9119D42AEA491B00CBB8EF /* expenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expenseTrackerApp.swift; sourceTree = "<group>"; };
 		9A9119D62AEA491B00CBB8EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				9A9119E72AEA4A6400CBB8EF /* logExpensesView.swift */,
 				9AF36FBA2AEADA1F00406F7E /* expenseDetailView.swift */,
 				9A9119D42AEA491B00CBB8EF /* expenseTrackerApp.swift */,
+				9A57E2232AF40EA800D474C1 /* categorizationView.swift */,
 				9A9119D62AEA491B00CBB8EF /* ContentView.swift */,
 				9A9119D82AEA492700CBB8EF /* Assets.xcassets */,
 				9A9119DD2AEA492700CBB8EF /* Persistence.swift */,
@@ -154,6 +157,7 @@
 				9AF36FBB2AEADA1F00406F7E /* expenseDetailView.swift in Sources */,
 				9A9119D72AEA491B00CBB8EF /* ContentView.swift in Sources */,
 				9A9119D52AEA491B00CBB8EF /* expenseTrackerApp.swift in Sources */,
+				9A57E2242AF40EA800D474C1 /* categorizationView.swift in Sources */,
 				9A9119E12AEA492700CBB8EF /* expenseTracker.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
