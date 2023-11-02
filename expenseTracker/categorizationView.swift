@@ -28,7 +28,7 @@ struct CategorizationView: View {
 
     var body: some View {
         VStack {
-            Text("Categories")
+            Text("Manage Categories")
                 .font(.title)
                 .padding()
 
