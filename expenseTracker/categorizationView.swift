@@ -45,7 +45,7 @@ struct CategorizationView: View {
 
             Button("Add Category") {
                 guard isCategoryNameValid else {
-                    // Handle invalid input, e.g., show an alert to the user
+                    // Handle invalid input
                     return
                 }
 
