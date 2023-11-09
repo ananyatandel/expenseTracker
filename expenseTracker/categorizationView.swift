@@ -13,88 +13,71 @@ struct Category: Identifiable {
 }
 
 struct CategorizationView: View {
-//    @State private var categories: [Category] = []
-//    @State private var categoryName: String = ""
-//    @State private var selectedCategory: String?
-    @State var expenseCategories = ["Groceries", "Transportation", "Entertainment", "Housing", "Insurance"]
+    @ObservedObject var budgetManager: BudgetManager
+
+    init(budgetManager: BudgetManager) {
+        self.budgetManager = budgetManager
+    }
 
     @State private var categories: [Category] = []
-       @State private var categoryName: String = ""
-       @State private var selectedCategory: String?
-       
-       var allCategories: [String] {
-           return categories.map { $0.name } + expenseCategories
-       }
+    @State private var categoryName: String = ""
+    @State private var selectedCategory: String?
+
+    var allCategories: [String] {
+        return categories.map { $0.name } + budgetManager.budgets.map { $0.category }
+    }
+
+    var isCategoryNameValid: Bool {
+        return !categoryName.trimmingCharacters(in: .whitespaces).isEmpty
+    }
 
     var body: some View {
         VStack {
             Text("Manage Categories")
-                .font(.title)
+                .font(.largeTitle)
+                .foregroundColor(.purple)
                 .padding()
 
             TextField("Enter Custom Category", text: $categoryName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
+                .foregroundColor(.black)
 
             Button("Add Category") {
+                guard isCategoryNameValid else {
+                    // Handle invalid input, e.g., show an alert to the user
+                    return
+                }
+
                 let newCategory = Category(name: categoryName)
                 categories.append(newCategory)
                 categoryName = ""
             }
-            .foregroundColor(.pink)
+            .foregroundColor(.white)
+            .padding()
+            .background(isCategoryNameValid ? Color.green : Color.gray)
+            .cornerRadius(8.0)
             .padding()
 
             List {
                 ForEach(categories) { category in
                     Text(category.name)
+                        .font(.headline)
+                        .foregroundColor(.blue)
                 }
             }
+            .listStyle(PlainListStyle())
         }
+        .background(Color.gray.opacity(0.1))
+        .cornerRadius(15)
+        .padding()
         .navigationTitle("Categories")
     }
 }
-//
-//struct CategorizationView: View {
-//    @State private var categories: [String] = []
-//    @State private var categoryName: String = ""
-//    @State private var selectedCategory: String?
-//
-//    var body: some View {
-//        VStack {
-//            Text("Manage Categories")
-//                .font(.title)
-//                .padding()
-//
-//            TextField("Category Name", text: $categoryName)
-//                .textFieldStyle(RoundedBorderTextFieldStyle())
-//                .padding()
-//
-//            Button("Add Category") {
-//                categories.append(categoryName)
-//                categoryName = ""
-//            }
-//            .foregroundColor(.blue)
-//            .padding()
-//
-//            List {
-//                ForEach(categories, id: \.self) { category in
-//                    Text(category)
-//                    ForEach(expenses.filter { $0.category == category }) { expense in
-//                        NavigationLink(destination: ExpenseDetailView(expense: expense)) {
-//                            Text(expense.name)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        .navigationTitle("Categories")
-//    }
-//}
-
 
 struct CategorizationView_Previews: PreviewProvider {
     static var previews: some View {
-        CategorizationView()
+        CategorizationView(budgetManager: BudgetManager())
     }
 }
 
