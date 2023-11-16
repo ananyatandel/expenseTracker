@@ -39,7 +39,7 @@ struct ContentView: View {
             }
 
             NavigationView {
-                // Finances Quiz tab view
+                QuizView() // Tab 4
             }
             .tabItem {
                 Image(systemName: "questionmark.square")
