@@ -56,6 +56,11 @@ struct QuizView: View {
                     }
                     .padding()
                     .disabled(selectedAnswer == nil)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(15)
+                    .padding(.horizontal, 50)      
+                    .padding(.vertical, 10)
                 } else {
                     Button("Restart Quiz") {
                         currentQuestionIndex = 0
@@ -63,6 +68,11 @@ struct QuizView: View {
                         selectedAnswer = nil
                     }
                     .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(15)
+                    .padding(.horizontal, 50)
+                    .padding(.vertical, 10)
                 }
                 Spacer()
             }
