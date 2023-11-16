@@ -118,11 +118,11 @@ struct QuizQuestionView: View {
     
     var body: some View {
         ZStack {
-            // Background Image
-            Image("money")
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
+//            // Background Image
+//            Image("money")
+//                .resizable()
+//                .scaledToFill()
+//                .edgesIgnoringSafeArea(.all)
             
             VStack {
                 Text(question.question)
@@ -161,7 +161,7 @@ struct QuizQuestionView: View {
             .shadow(radius: 5)
         }
     }
-}
+//}
     
     
 struct QuizResultView: View {
