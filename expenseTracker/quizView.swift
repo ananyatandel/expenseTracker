@@ -33,12 +33,7 @@ struct QuizView: View {
     ]
     
     var body: some View {
-//        ZStack {
-//            // Background Image
-//            Image("download")
-//                .resizable()
-//                .scaledToFill()
-//                .edgesIgnoringSafeArea(.all)
+
             
             VStack {
                 Spacer()
@@ -114,9 +109,14 @@ struct QuizQuestionView: View {
     @Binding var selectedAnswer: String?
     
     var body: some View {
-     
+//        ZStack {
+//            // Background Image
+//            Image("download")
+//                .resizable()
+//                .scaledToFill()
+////                .edgesIgnoringSafeArea(.all)
             
-        VStack {
+            VStack {
                 Text(question.question)
                     .font(.title)
                     .padding()
@@ -153,40 +153,40 @@ struct QuizQuestionView: View {
             .shadow(radius: 5)
         }
     }
-
-
-struct QuizResultView: View {
-    let score: Int
-    let totalQuestions: Int
-
-    var body: some View {
-        VStack {
-            Text("Quiz Completed!")
-                .font(.title)
-                .padding()
-
-            Text("Your Score: \(score) / \(totalQuestions)")
-                .font(.headline)
-                .padding()
-
-            Text("Feedback: \(feedbackMessage)")
-                .padding()
+//}
+    
+    
+    struct QuizResultView: View {
+        let score: Int
+        let totalQuestions: Int
+        
+        var body: some View {
+            VStack {
+                Text("Quiz Completed!")
+                    .font(.title)
+                    .padding()
+                
+                Text("Your Score: \(score) / \(totalQuestions)")
+                    .font(.headline)
+                    .padding()
+                
+                Text("Feedback: \(feedbackMessage)")
+                    .padding()
+            }
+        }
+        
+        private var feedbackMessage: String {
+            let percentage = Double(score) / Double(totalQuestions) * 100
+            if percentage >= 70 {
+                return "Great job! You have a good understanding of financial terms."
+            } else {
+                return "Keep learning! Consider reviewing financial terms to enhance your knowledge."
+            }
         }
     }
-
-    private var feedbackMessage: String {
-        let percentage = Double(score) / Double(totalQuestions) * 100
-        if percentage >= 70 {
-            return "Great job! You have a good understanding of financial terms."
-        } else {
-            return "Keep learning! Consider reviewing financial terms to enhance your knowledge."
+    
+    struct QuizView_Previews: PreviewProvider {
+        static var previews: some View {
+            QuizView()
         }
     }
-}
-
-struct QuizView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuizView()
-    }
-}
-
