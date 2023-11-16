@@ -136,14 +136,14 @@ struct QuizQuestionView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .padding(.vertical, 10)
-                    .padding(.vertical, 20)
+                    .padding(.horizontal, 10)
                     .background(selectedAnswer == option ? Color.purple : Color.pink)
                     .cornerRadius(15)
                     .overlay(
                         RoundedRectangle(cornerRadius: 15)
-                            .stroke(selectedAnswer == option ? Color.pink : Color.purple, lineWidth: 1)
+                            .stroke(selectedAnswer == option ? Color.purple : Color.pink, lineWidth: 1)
                     )
-                    .padding(.horizontal)
+                    .padding(.horizontal, 10)
                 }
             }
             .padding()
