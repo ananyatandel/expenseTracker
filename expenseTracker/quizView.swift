@@ -33,8 +33,6 @@ struct QuizView: View {
     ]
     
     var body: some View {
-
-            
             VStack {
                 Spacer()
                 
@@ -56,6 +54,11 @@ struct QuizView: View {
                     }
                     .padding()
                     .disabled(selectedAnswer == nil)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(15)
+                    .padding(.horizontal, 50)      .padding(.vertical, 10)
+                                    
                 } else {
                     Button("Restart Quiz") {
                         currentQuestionIndex = 0
@@ -63,6 +66,11 @@ struct QuizView: View {
                         selectedAnswer = nil
                     }
                     .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(15)
+                    .padding(.horizontal, 50)
+                    .padding(.vertical, 10)
                 }
                 Spacer()
             }
@@ -109,12 +117,12 @@ struct QuizQuestionView: View {
     @Binding var selectedAnswer: String?
     
     var body: some View {
-//        ZStack {
-//            // Background Image
-//            Image("download")
-//                .resizable()
-//                .scaledToFill()
-////                .edgesIgnoringSafeArea(.all)
+        ZStack {
+            // Background Image
+            Image("money")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
             
             VStack {
                 Text(question.question)
@@ -153,10 +161,10 @@ struct QuizQuestionView: View {
             .shadow(radius: 5)
         }
     }
-//}
+}
     
     
-    struct QuizResultView: View {
+struct QuizResultView: View {
         let score: Int
         let totalQuestions: Int
         
