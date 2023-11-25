@@ -46,7 +46,7 @@ struct ContentView: View {
                 Text("Finances Quiz")
             }
         }
-        .accentColor(.pink) // Set the accent color to pink
+        .accentColor(.pink) 
     }
 }
 
