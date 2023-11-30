@@ -33,8 +33,12 @@ struct QuizView: View {
     ]
     
     var body: some View {
-
-            
+        ZStack {
+            // Background Image
+            Image("quizBackground")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
                 
@@ -56,10 +60,10 @@ struct QuizView: View {
                     }
                     .padding()
                     .disabled(selectedAnswer == nil)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
+                    .background(Color.white)
+                    .foregroundColor(.black)
                     .cornerRadius(15)
-                    .padding(.horizontal, 50)      
+                    .padding(.horizontal, 50)
                     .padding(.vertical, 10)
                 } else {
                     Button("Restart Quiz") {
@@ -76,61 +80,33 @@ struct QuizView: View {
                 }
                 Spacer()
             }
-            .navigationTitle("Financial Quiz")
+//            .navigationTitle("Financial Quiz")
         }
         
-        private func checkAnswer() {
-            if let selectedAnswer = selectedAnswer,
-               selectedAnswer == quizQuestions[currentQuestionIndex].correctAnswer {
-                score += 1
+        
             }
+    private func checkAnswer() {
+        if let selectedAnswer = selectedAnswer,
+           selectedAnswer == quizQuestions[currentQuestionIndex].correctAnswer {
+            score += 1
         }
     }
-
-// plain question view
-//struct QuizQuestionView: View {
-//    let question: QuizQuestion
-//    @Binding var selectedAnswer: String?
-//
-//    var body: some View {
-//        VStack(alignment: .leading) {
-//            Text(question.question)
-//                .font(.headline)
-//                .padding(.bottom, 10)
-//
-//            ForEach(question.options, id: \.self) { option in
-//                Button(action: {
-//                    selectedAnswer = option
-//                }) {
-//                    HStack {
-//                        Image(systemName: selectedAnswer == option ? "checkmark.circle.fill" : "circle")
-//                        Text(option)
-//                    }
-//                }
-//                .buttonStyle(PlainButtonStyle())
-//                .padding(.vertical, 5)
-//            }
-//        }
-//    }
-//}
+}
 
 struct QuizQuestionView: View {
     let question: QuizQuestion
     @Binding var selectedAnswer: String?
     
     var body: some View {
-//        ZStack {
-//            // Background Image
-//            Image("download")
-//                .resizable()
-//                .scaledToFill()
-////                .edgesIgnoringSafeArea(.all)
+      
+         
             
             VStack {
                 Text(question.question)
                     .font(.title)
                     .padding()
                     .padding()
+//                    .padding()
                 
                 ForEach(question.options, id: \.self) { option in
                     Button(action: {
@@ -147,11 +123,11 @@ struct QuizQuestionView: View {
                     .buttonStyle(PlainButtonStyle())
                     .padding(.vertical, 10)
                     .padding(.horizontal, 10)
-                    .background(selectedAnswer == option ? Color.purple : Color.pink)
+                    .background(selectedAnswer == option ? Color.yellow : Color.green)
                     .cornerRadius(15)
                     .overlay(
                         RoundedRectangle(cornerRadius: 15)
-                            .stroke(selectedAnswer == option ? Color.purple : Color.pink, lineWidth: 1)
+                            .stroke(selectedAnswer == option ? Color.yellow : Color.green, lineWidth: 1)
                     )
                     .padding(.horizontal, 10)
                 }
@@ -180,7 +156,7 @@ struct QuizQuestionView: View {
                     .font(.headline)
                     .padding()
                 
-                Text("Feedback: \(feedbackMessage)")
+                Text("\(feedbackMessage)")
                     .padding()
             }
         }
