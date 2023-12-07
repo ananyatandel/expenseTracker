@@ -159,6 +159,7 @@ struct QuizQuestionView: View {
                 Text("\(feedbackMessage)")
                     .padding()
             }
+            .background(Color.white)
         }
         
         private var feedbackMessage: String {

@@ -1,11 +1,3 @@
-//
-//  categorizationView.swift
-//  expenseTracker
-//
-//  Created by Ananya Tandel on 10/30/23.
-//
-
-// testing commit 
 
 import SwiftUI
 
@@ -34,46 +26,75 @@ struct CategorizationView: View {
     }
 
     var body: some View {
-        VStack {
-            Text("Manage Categories")
-                .font(.largeTitle)
-                .foregroundColor(.purple)
-                .padding()
+        NavigationView {
+            VStack {
+                Image("logExpensesBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                    .overlay(
+                        VStack {
+                            Text("Manage Categories")
+                                .font(.largeTitle)
+                                .foregroundColor(.black)
+                                .padding()
 
-            TextField("Enter Custom Category", text: $categoryName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-                .foregroundColor(.black)
+                            TextField("Enter Custom Category", text: $categoryName)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding()
+                                .foregroundColor(.black)
 
-            Button("Add Category") {
-                guard isCategoryNameValid else {
-                    // Handle invalid input
-                    return
-                }
+                            Button("Add Category") {
+                                guard isCategoryNameValid else {
+                                    return
+                                }
 
-                let newCategory = Category(name: categoryName)
-                categories.append(newCategory)
-                categoryName = ""
+                                let newCategory = Category(name: categoryName)
+                                categories.append(newCategory)
+                                categoryName = ""
+                            }
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(isCategoryNameValid ? Color.green : Color.orange)
+                            .cornerRadius(8.0)
+                            .padding()
+
+                            List {
+                                ForEach(categories) { category in
+                                    HStack {
+                                        Text(category.name)
+                                            .font(.headline)
+                                            .foregroundColor(.blue)
+                                        Spacer()
+                                        Button(action: {
+                                            deleteCategory(category)
+                                        }) {
+                                            Image(systemName: "trash")
+                                                .foregroundColor(.red)
+                                        }
+                                    }
+                                }
+                                .onDelete(perform: deleteCategories)
+                            }
+                            .listStyle(PlainListStyle())
+                        }
+                        .cornerRadius(15)
+                        .padding()
+                    )
             }
-            .foregroundColor(.white)
-            .padding()
-            .background(isCategoryNameValid ? Color.green : Color.gray)
-            .cornerRadius(8.0)
-            .padding()
-
-            List {
-                ForEach(categories) { category in
-                    Text(category.name)
-                        .font(.headline)
-                        .foregroundColor(.blue)
-                }
-            }
-            .listStyle(PlainListStyle())
+            .navigationBarHidden(true)
         }
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(15)
-        .padding()
-        .navigationTitle("Categories")
+    }
+
+    private func deleteCategory(_ category: Category) {
+        guard let index = categories.firstIndex(where: { $0.id == category.id }) else {
+            return
+        }
+        categories.remove(at: index)
+    }
+
+    private func deleteCategories(at offsets: IndexSet) {
+        categories.remove(atOffsets: offsets)
     }
 }
 
@@ -82,4 +103,3 @@ struct CategorizationView_Previews: PreviewProvider {
         CategorizationView(budgetManager: BudgetManager())
     }
 }
-

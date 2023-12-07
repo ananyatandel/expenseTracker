@@ -116,6 +116,7 @@ struct ExpenseDetailView: View {
 struct ExpenseDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ExpenseDetailView(expense: Expense(name: "Sample Expense", amount: "100.00", date: Date(), description: "Test"))
+
     }
 }
 
