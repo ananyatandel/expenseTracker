@@ -56,6 +56,8 @@ struct LogExpensesView: View {
 //
 //                    // If the user wants to create a custom category
 //                    TextField("Custom Category", text: $customCategoryName)
+                    Spacer()
+                        .padding(.bottom, 0)
                     Button("Add Expense") {
                         _ = selectedCategory ?? customCategoryName
 
