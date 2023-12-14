@@ -98,51 +98,53 @@ struct QuizQuestionView: View {
     @Binding var selectedAnswer: String?
     
     var body: some View {
-      
-         
+        VStack {
+            Text(question.question)
+                .font(.title)
+                .padding()
             
-            VStack {
-                Text(question.question)
-                    .font(.title)
-                    .padding()
-                    .padding()
-//                    .padding()
-                
-                ForEach(question.options, id: \.self) { option in
-                    Button(action: {
-                        selectedAnswer = option
-                    }) {
-                        HStack {
-                            Image(systemName: selectedAnswer == option ? "checkmark.circle.fill" : "circle")
-                                .foregroundColor(.white)
-                            Text(option)
-                                .foregroundColor(.white)
-                                .fontWeight(.bold)
-                        }
+            ForEach(question.options, id: \.self) { option in
+                Button(action: {
+                    selectedAnswer = option
+                }) {
+                    HStack {
+                        Image(systemName: selectedAnswer == option ? "checkmark.circle.fill" : "circle")
+                            .foregroundColor(.white)
+                        
+                        Text(option)
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 10)
-                    .background(selectedAnswer == option ? Color.yellow : Color.green)
-                    .cornerRadius(15)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(selectedAnswer == option ? Color.yellow : Color.green, lineWidth: 1)
-                    )
-                    .padding(.horizontal, 10)
+                }
+                .buttonStyle(PlainButtonStyle())
+                .padding(.vertical, 10)
+                .padding(.horizontal, 10)
+                .background(selectedAnswer == option ? Color.yellow : (selectedAnswer != nil && selectedAnswer != question.correctAnswer ? Color.red : Color.green))
+                .cornerRadius(15)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(selectedAnswer == option ? Color.yellow : (selectedAnswer != nil && selectedAnswer != question.correctAnswer ? Color.red : Color.green), lineWidth: 1)
+                )
+                .padding(.horizontal, 10)
+                
+                // Show correct answer if wrong option is selected
+                if selectedAnswer != nil && selectedAnswer == option && selectedAnswer != question.correctAnswer {
+                    Text("Correct Answer: \(question.correctAnswer)")
+                        .foregroundColor(.red)
+//                        .padding(.top, 10)
+                        .padding()
                 }
             }
-            .padding()
-            .background(Color.white.opacity(0.8))
-            .cornerRadius(20)
-            .padding(.horizontal, 20)
-            .shadow(radius: 5)
         }
+        .padding()
+        .background(Color.white.opacity(0.8))
+        .cornerRadius(20)
+        .padding(.horizontal, 20)
+        .shadow(radius: 5)
     }
-//}
+}
     
-    
-    struct QuizResultView: View {
+struct QuizResultView: View {
         let score: Int
         let totalQuestions: Int
         
@@ -172,7 +174,7 @@ struct QuizQuestionView: View {
         }
     }
     
-    struct QuizView_Previews: PreviewProvider {
+struct QuizView_Previews: PreviewProvider {
         static var previews: some View {
             QuizView()
         }

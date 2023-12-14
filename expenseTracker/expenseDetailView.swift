@@ -69,4 +69,3 @@ struct ExpenseDetailView_Previews: PreviewProvider {
 
     }
 }
-
