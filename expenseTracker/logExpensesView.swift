@@ -1,13 +1,6 @@
-//
-//  logExpensesView.swift
-//  expenseTracker
-//
-//  Created by Ananya Tandel on 10/26/23.
-//
-
-import Foundation
-
+// without swipe to delete
 import SwiftUI
+
 
 struct Expense: Identifiable {
     let id = UUID()
@@ -23,23 +16,20 @@ struct LogExpensesView: View {
     @State private var expenseDate = Date()
     @State private var expenseDescription = ""
     @State private var expenses: [Expense] = []
-    //    @State private var selectedCategory: Category? // For picker selection
-    //    @State private var customCategoryName: String = "" // For custom category creation
-
-    @State private var expenseCategories = ["Groceries", "Transportation", "Entertainment", "Housing", "Insurance"]
+    @State private var expenseCategories = ["Groceries", "Transportation", "Entertainment", "Housing", "Insurance", "Misc"]
     @State private var selectedCategory: String?
     @State private var customCategoryName = ""
 
-
-
-
     var body: some View {
-//        ZStack {
-//            // Background Image
-//            Image("logExpensesBackground")
+
+        ZStack {
+            // Background Image
+            Image("dollarBill")
 //                .resizable()
 //                .scaledToFill()
 //                .edgesIgnoringSafeArea(.all)
+                .opacity(1.0) // Make it fully opaque
+
             Form {
                 Section(header: Text("Log an Expense")) {
                     TextField("Expense Name", text: $expenseName)
@@ -53,27 +43,21 @@ struct LogExpensesView: View {
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
-//
-//                    // If the user wants to create a custom category
-//                    TextField("Custom Category", text: $customCategoryName)
-                    Spacer()
-                        .padding(.bottom, 0)
+
                     Button("Add Expense") {
                         _ = selectedCategory ?? customCategoryName
 
                         let newExpense = Expense(name: expenseName, amount: expenseAmount, date: expenseDate, description: expenseDescription)
                         expenses.append(newExpense)
-                        // Clear the input fields
                         expenseName = ""
                         expenseAmount = ""
                         expenseDate = Date()
                         expenseDescription = ""
-//                        selectedCatergory = nil
-//                        customCategoryName = ""
                     }
                 }
 
                 Section(header: Text("Expense List")) {
+
                     List {
                         ForEach(expenses) { expense in
                             NavigationLink(destination: ExpenseDetailView(expense: expense)) {
@@ -82,14 +66,12 @@ struct LogExpensesView: View {
                         }
                     }
                 }
-
             }
         }
-
     }
+}
 
-
-struct logExpensesView_Previews: PreviewProvider {
+struct LogExpensesView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
@@ -98,8 +80,9 @@ struct logExpensesView_Previews: PreviewProvider {
 
 
 
-//
-//// logExpensesView.swift
+
+
+// updated code with swipe to delete feature - but it's not loading in simulator at all and there are no errors showing up
 //import SwiftUI
 //
 //struct Expense: Identifiable {
@@ -118,10 +101,17 @@ struct logExpensesView_Previews: PreviewProvider {
 //    @State private var expenses: [Expense] = []
 //    @State private var expenseCategories = ["Groceries", "Transportation", "Entertainment", "Housing", "Insurance", "Misc"]
 //    @State private var selectedCategory: String?
-//    @State private var categories: [String] = []
+//    @State private var customCategoryName = ""
 //
 //    var body: some View {
-//        NavigationView {
+//        ZStack {
+//            // Background Image
+//            Image("dollarBill")
+//                .resizable()
+//                .scaledToFill()
+//                .edgesIgnoringSafeArea(.all)
+//                .opacity(1.0) // Make it fully opaque
+//
 //            Form {
 //                Section(header: Text("Log an Expense")) {
 //                    TextField("Expense Name", text: $expenseName)
@@ -130,17 +120,15 @@ struct logExpensesView_Previews: PreviewProvider {
 //                    DatePicker("Expense Date", selection: $expenseDate)
 //                    TextField("Expense Description", text: $expenseDescription)
 //                    Picker("Select Category", selection: $selectedCategory) {
-//                        ForEach(categories, id: \.self) { category in
+//                        ForEach(expenseCategories, id: \.self) { category in
 //                            Text(category)
 //                        }
 //                    }
 //                    .pickerStyle(MenuPickerStyle())
 //
-//                    NavigationLink(destination: CategorizationView(budgetManager: BudgetManager(), selectedCategory: $selectedCategory, categories: $categories)) {
-//                        Text("Manage Categories")
-//                    }
-//
 //                    Button("Add Expense") {
+//                        _ = selectedCategory ?? customCategoryName
+//
 //                        let newExpense = Expense(name: expenseName, amount: expenseAmount, date: expenseDate, description: expenseDescription)
 //                        expenses.append(newExpense)
 //                        expenseName = ""
@@ -157,17 +145,22 @@ struct logExpensesView_Previews: PreviewProvider {
 //                                Text(expense.name)
 //                            }
 //                        }
+//                        .onDelete { indices in
+//                            deleteExpenses(at: indices)
+//                        }
 //                    }
 //                }
 //            }
-//            .navigationBarTitle("Log Expenses")
 //        }
+//    }
+//
+//    private func deleteExpenses(at indices: IndexSet) {
+//        expenses.remove(atOffsets: indices)
 //    }
 //}
 //
-//struct logExpensesView_Previews: PreviewProvider {
+//struct LogExpensesView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ContentView()
 //    }
 //}
-//

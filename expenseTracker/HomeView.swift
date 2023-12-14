@@ -44,7 +44,7 @@ struct HomeView: View {
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
             )
-            .navigationTitle("Expense Diary 🏠")
+            .navigationTitle("🏠")
         }
     }
 }
