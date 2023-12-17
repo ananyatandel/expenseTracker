@@ -1,9 +1,5 @@
 //
 //  quizView.swift
-//  expenseTracker
-//
-//  Created by Ananya Tandel on 11/13/23.
-//
 
 import SwiftUI
 

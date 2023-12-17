@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct expenseTrackerApp: App {
     let persistenceController = PersistenceController.shared
+    var categoryManager = CategoryManager()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(categoryManager)
         }
     }
 }
