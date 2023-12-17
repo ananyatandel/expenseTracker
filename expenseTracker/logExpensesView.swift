@@ -1,166 +1,136 @@
-// without swipe to delete
-import SwiftUI
+// LogExpensesView.swift
+// concurrently working with categories
 
+import SwiftUI
 
 struct Expense: Identifiable {
     let id = UUID()
-    let name: String
-    let amount: String
-    let date: Date
-    let description: String
+    var name: String
+    var amount: String
+    var date: Date
+    var description: String
+    var category: String
 }
+// test commit comment
 
 struct LogExpensesView: View {
+    @EnvironmentObject var categoryManager: CategoryManager
     @State private var expenseName = ""
     @State private var expenseAmount = ""
     @State private var expenseDate = Date()
     @State private var expenseDescription = ""
     @State private var expenses: [Expense] = []
-    @State private var expenseCategories = ["Groceries", "Transportation", "Entertainment", "Housing", "Insurance", "Misc"]
-    @State private var selectedCategory: String?
-    @State private var customCategoryName = ""
+    @State private var selectedCategory = "Groceries"
 
     var body: some View {
+        NavigationView {
+            ZStack {
+                Image("budgetBackground")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .edgesIgnoringSafeArea(.all)
 
-        ZStack {
-            // Background Image
-            Image("dollarBill")
-//                .resizable()
-//                .scaledToFill()
-//                .edgesIgnoringSafeArea(.all)
-                .opacity(1.0) // Make it fully opaque
+                ScrollView {
+                    VStack(alignment: .center, spacing: 20) {
+                        Text("Log An Expense")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .padding(.top, 50)
+                            .foregroundColor(.white)
 
-            Form {
-                Section(header: Text("Log an Expense")) {
-                    TextField("Expense Name", text: $expenseName)
-                    TextField("Expense Amount ($)", text: $expenseAmount)
-                        .keyboardType(.numberPad)
-                    DatePicker("Expense Date", selection: $expenseDate)
-                    TextField("Expense Description", text: $expenseDescription)
-                    Picker("Select Category", selection: $selectedCategory) {
-                        ForEach(expenseCategories, id: \.self) { category in
-                            Text(category)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
+                        VStack(alignment: .leading, spacing: 10) {
+                            TextField("Expense Name", text: $expenseName)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(10)
+                            TextField("Expense Amount ($)", text: $expenseAmount)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .keyboardType(.numberPad)
+                            DatePicker("Expense Date", selection: $expenseDate, displayedComponents: .date)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(10)
 
-                    Button("Add Expense") {
-                        _ = selectedCategory ?? customCategoryName
+                            TextField("Expense Description (Optional)", text: $expenseDescription)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(10)
 
-                        let newExpense = Expense(name: expenseName, amount: expenseAmount, date: expenseDate, description: expenseDescription)
-                        expenses.append(newExpense)
-                        expenseName = ""
-                        expenseAmount = ""
-                        expenseDate = Date()
-                        expenseDescription = ""
-                    }
-                }
-
-                Section(header: Text("Expense List")) {
-
-                    List {
-                        ForEach(expenses) { expense in
-                            NavigationLink(destination: ExpenseDetailView(expense: expense)) {
-                                Text(expense.name)
+                            HStack {
+                                Text("Select Category")
+                                    .foregroundColor(Color.black)
+                                Spacer()
+                                Picker("Select Category", selection: $selectedCategory) {
+                                    ForEach(categoryManager.categories, id: \.self) { category in
+                                        Text(category).tag(category)
+                                    }
+                                }
+                                .pickerStyle(MenuPickerStyle())
+                                .foregroundColor(Color.black)
                             }
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(10)
+
+                            Button("Add Expense") {
+                                if !expenseName.isEmpty && !expenseAmount.isEmpty {
+                                    let newExpense = Expense(name: expenseName, amount: expenseAmount, date: expenseDate, description: expenseDescription, category: selectedCategory)
+                                    expenses.append(newExpense)
+                                    resetExpenseFields()
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.green)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(15)
+                        }
+                        .padding(.horizontal)
+
+                        Spacer().frame(height: 30)
+
+                        VStack(alignment: .leading, spacing: 10) {
+                            ForEach(expenses) { expense in
+                                NavigationLink(destination: ExpenseDetailView(expense: expense)) {
+                                    VStack(alignment: .leading) {
+                                        Text(expense.name).font(.headline).foregroundColor(Color.black)
+                                        Text(expense.amount).font(.subheadline).foregroundColor(Color.black)
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding()
+                                    .background(Color.white)
+                                    .cornerRadius(10)
+                                    .padding(.horizontal, 8)
+                                }
+                            }
+                            .onDelete(perform: deleteExpense)
                         }
                     }
                 }
             }
+            .accentColor(Color.green)
+            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarHidden(true)
         }
+    }
+
+    private func deleteExpense(at offsets: IndexSet) {
+        expenses.remove(atOffsets: offsets)
+    }
+
+    private func resetExpenseFields() {
+        expenseName = ""
+        expenseAmount = ""
+        expenseDate = Date()
+        expenseDescription = ""
     }
 }
 
 struct LogExpensesView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LogExpensesView()
+            .environmentObject(CategoryManager())
     }
 }
-
-
-
-
-
-
-// updated code with swipe to delete feature - but it's not loading in simulator at all and there are no errors showing up
-//import SwiftUI
-//
-//struct Expense: Identifiable {
-//    let id = UUID()
-//    let name: String
-//    let amount: String
-//    let date: Date
-//    let description: String
-//}
-//
-//struct LogExpensesView: View {
-//    @State private var expenseName = ""
-//    @State private var expenseAmount = ""
-//    @State private var expenseDate = Date()
-//    @State private var expenseDescription = ""
-//    @State private var expenses: [Expense] = []
-//    @State private var expenseCategories = ["Groceries", "Transportation", "Entertainment", "Housing", "Insurance", "Misc"]
-//    @State private var selectedCategory: String?
-//    @State private var customCategoryName = ""
-//
-//    var body: some View {
-//        ZStack {
-//            // Background Image
-//            Image("dollarBill")
-//                .resizable()
-//                .scaledToFill()
-//                .edgesIgnoringSafeArea(.all)
-//                .opacity(1.0) // Make it fully opaque
-//
-//            Form {
-//                Section(header: Text("Log an Expense")) {
-//                    TextField("Expense Name", text: $expenseName)
-//                    TextField("Expense Amount ($)", text: $expenseAmount)
-//                        .keyboardType(.numberPad)
-//                    DatePicker("Expense Date", selection: $expenseDate)
-//                    TextField("Expense Description", text: $expenseDescription)
-//                    Picker("Select Category", selection: $selectedCategory) {
-//                        ForEach(expenseCategories, id: \.self) { category in
-//                            Text(category)
-//                        }
-//                    }
-//                    .pickerStyle(MenuPickerStyle())
-//
-//                    Button("Add Expense") {
-//                        _ = selectedCategory ?? customCategoryName
-//
-//                        let newExpense = Expense(name: expenseName, amount: expenseAmount, date: expenseDate, description: expenseDescription)
-//                        expenses.append(newExpense)
-//                        expenseName = ""
-//                        expenseAmount = ""
-//                        expenseDate = Date()
-//                        expenseDescription = ""
-//                    }
-//                }
-//
-//                Section(header: Text("Expense List")) {
-//                    List {
-//                        ForEach(expenses) { expense in
-//                            NavigationLink(destination: ExpenseDetailView(expense: expense)) {
-//                                Text(expense.name)
-//                            }
-//                        }
-//                        .onDelete { indices in
-//                            deleteExpenses(at: indices)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    private func deleteExpenses(at indices: IndexSet) {
-//        expenses.remove(atOffsets: indices)
-//    }
-//}
-//
-//struct LogExpensesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
