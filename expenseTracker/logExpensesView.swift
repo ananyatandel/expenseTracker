@@ -12,7 +12,7 @@ struct Expense: Identifiable, Codable {
     var category: String
 }
 
-// final test commit message - ignore
+// final test commit message - ignore - test 1
 
 struct LogExpensesView: View {
     @EnvironmentObject var categoryManager: CategoryManager
