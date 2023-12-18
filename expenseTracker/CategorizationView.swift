@@ -4,12 +4,12 @@
 
 import SwiftUI
 
-struct Budget: Identifiable, Codable {
-    var id = UUID()
-    let category: String
-    let amount: Double
-    let timeFrame: String
-}
+//struct Budget: Identifiable, Codable {
+//    var id = UUID()
+//    let category: String
+//    let amount: Double
+//    let timeFrame: String
+//}
 
 struct Category: Identifiable {
     let id = UUID()
@@ -110,5 +110,3 @@ struct CategorizationView_Previews: PreviewProvider {
             .environmentObject(CategoryManager())
     }
 }
-
-
