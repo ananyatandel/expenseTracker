@@ -20,6 +20,7 @@
 		9A9119E12AEA492700CBB8EF /* expenseTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A9119DF2AEA492700CBB8EF /* expenseTracker.xcdatamodeld */; };
 		9A9F320C2B2FBFB8003F49F6 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9F320B2B2FBFB8003F49F6 /* Budget.swift */; };
 		9ABEFD212B19131400A432C6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABEFD202B19131400A432C6 /* HomeView.swift */; };
+		9AC6544F2B2FC75B002D57B6 /* categorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC6544E2B2FC75B002D57B6 /* categorizationView.swift */; };
 		9AD30D9D2B2FA49C006D3396 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD30D9C2B2FA49C006D3396 /* CategoryManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		9A9119E02AEA492700CBB8EF /* expenseTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = expenseTracker.xcdatamodel; sourceTree = "<group>"; };
 		9A9F320B2B2FBFB8003F49F6 /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
 		9ABEFD202B19131400A432C6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		9AC6544E2B2FC75B002D57B6 /* categorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categorizationView.swift; sourceTree = "<group>"; };
 		9AD30D9C2B2FA49C006D3396 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 				9A9119D42AEA491B00CBB8EF /* expenseTrackerApp.swift */,
 				9A9F320B2B2FBFB8003F49F6 /* Budget.swift */,
 				9A6A4E6A2B2FB84D00392E6D /* editExpenseView.swift */,
+				9AC6544E2B2FC75B002D57B6 /* categorizationView.swift */,
 				9A70599C2B2FBCE30079BBE9 /* logExpensesView.swift */,
 				9A6A4E642B2FB47200392E6D /* QuizView.swift */,
 				9ABEFD202B19131400A432C6 /* HomeView.swift */,
@@ -177,6 +180,7 @@
 				9A9F320C2B2FBFB8003F49F6 /* Budget.swift in Sources */,
 				9A6A4E652B2FB47200392E6D /* QuizView.swift in Sources */,
 				9A9119D52AEA491B00CBB8EF /* expenseTrackerApp.swift in Sources */,
+				9AC6544F2B2FC75B002D57B6 /* categorizationView.swift in Sources */,
 				9A6788802AFD5B2300E530D2 /* budgetSettingView.swift in Sources */,
 				9A9119E12AEA492700CBB8EF /* expenseTracker.xcdatamodeld in Sources */,
 			);
