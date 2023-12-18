@@ -1,94 +1,7 @@
-//// Budget Setting View
-//// working with log expenses
-//
-//import SwiftUI
-//
-//struct BudgetSettingView: View {
-//    @EnvironmentObject var categoryManager: CategoryManager
-//    @ObservedObject var budgetManager: BudgetManager
-//
-//    @State private var selectedCategory: String = ""
-//    @State private var budgetAmount: String = ""
-//    @State private var selectedTimeFrame: TimeFrame = .weekly
-//
-//    var body: some View {
-//        NavigationView {
-//            Form {
-//                Section(header: Text("Create Budget")) {
-//                    Picker("Select Category", selection: $selectedCategory) {
-//                        ForEach(categoryManager.categories, id: \.self) { category in
-//                            Text(category).tag(category)
-//                        }
-//                    }
-//
-//                    TextField("Budget Amount", text: $budgetAmount)
-//                        .keyboardType(.decimalPad)
-//
-//                    Picker("Time Frame", selection: $selectedTimeFrame) {
-//                        ForEach(TimeFrame.allCases, id: \.self) { timeFrame in
-//                            Text(timeFrame.rawValue).tag(timeFrame)
-//                        }
-//                    }
-//                    .pickerStyle(SegmentedPickerStyle())
-//
-//                    Button("Set Budget") {
-//                        setBudget()
-//                    }
-//                }
-//
-//                Section(header: Text("Current Budgets")) {
-//                    List {
-//                        ForEach(budgetManager.budgets) { budget in
-//                            VStack(alignment: .leading) {
-//                                Text(budget.category)
-//                                    .font(.headline)
-//                                Text("Amount: \(budget.amount, specifier: "%.2f")")
-//                                Text("Time Frame: \(budget.timeFrame.rawValue)")
-//                            }
-//                        }
-//                        .onDelete(perform: deleteBudget)
-//                    }
-//                }
-//            }
-//            .navigationBarTitle("Budget Settings", displayMode: .inline)
-//            .background(
-//            Image("quizBackground")
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//                .edgesIgnoringSafeArea(.all)
-//            )
-//        }
-//    }
-//
-//    private func setBudget() {
-//        if let amount = Double(budgetAmount), !selectedCategory.isEmpty {
-//            let newBudget = Budget(category: selectedCategory, amount: amount, timeFrame: selectedTimeFrame)
-//            budgetManager.setBudget(newBudget)
-//            resetFields()
-//        }
-//    }
-//
-//    private func resetFields() {
-//        selectedCategory = ""
-//        budgetAmount = ""
-//    }
-//
-//    private func deleteBudget(at offsets: IndexSet) {
-//        budgetManager.budgets.remove(atOffsets: offsets)
-//    }
-//}
-//
-//struct BudgetSettingView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BudgetSettingView(budgetManager: BudgetManager())
-//            .environmentObject(CategoryManager())
-//    }
-//}
-//
+// Budget Setting View
+// working with log expenses and categorization
 
 import SwiftUI
-
-
 
 struct BudgetSettingView: View {
     @EnvironmentObject var categoryManager: CategoryManager
@@ -101,7 +14,7 @@ struct BudgetSettingView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Image("quizBackground")
+                Image("gradient")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .edgesIgnoringSafeArea(.all)
@@ -111,8 +24,8 @@ struct BudgetSettingView: View {
                         Text("Budget Settings")
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .padding(.top, 60)
-                        
+                            .padding(.top, 50)
+                            .foregroundColor(.black)
 
                         VStack(alignment: .leading, spacing: 10) {
                             HStack {
@@ -163,7 +76,7 @@ struct BudgetSettingView: View {
                             }
                             .onDelete(perform: deleteBudget)
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal, 15)
                     }
                 }
             }
@@ -182,6 +95,7 @@ struct BudgetSettingView: View {
     private func resetFields() {
         selectedCategory = ""
         budgetAmount = ""
+        selectedTimeFrame = .weekly
     }
 
     private func deleteBudget(at offsets: IndexSet) {
@@ -220,6 +134,7 @@ struct BudgetRow: View {
             Text("Time Frame: \(budget.timeFrame.rawValue)")
         }
         .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.white)
         .cornerRadius(8)
         .shadow(radius: 4)

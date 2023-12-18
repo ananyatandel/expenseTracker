@@ -65,7 +65,7 @@ struct CircularButton: View {
             
             Text(text)
                 .foregroundColor(.black)
-                .font(.system(size: 24))
+                .font(.system(size: 20))
                 .padding()
                 .font(.caption)
         }

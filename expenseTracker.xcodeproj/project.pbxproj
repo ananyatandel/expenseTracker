@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A4B7AFA2B2FF499008C05FC /* ExpenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B7AF92B2FF499008C05FC /* ExpenseManager.swift */; };
 		9A6788802AFD5B2300E530D2 /* budgetSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A67887F2AFD5B2300E530D2 /* budgetSettingView.swift */; };
 		9A6A4E652B2FB47200392E6D /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A4E642B2FB47200392E6D /* QuizView.swift */; };
 		9A6A4E692B2FB70900392E6D /* ExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A4E682B2FB70900392E6D /* ExpenseDetailView.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A4B7AF92B2FF499008C05FC /* ExpenseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseManager.swift; sourceTree = "<group>"; };
 		9A67887F2AFD5B2300E530D2 /* budgetSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budgetSettingView.swift; sourceTree = "<group>"; };
 		9A6A4E642B2FB47200392E6D /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		9A6A4E682B2FB70900392E6D /* ExpenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				9AD30D9C2B2FA49C006D3396 /* CategoryManager.swift */,
 				9A6A4E682B2FB70900392E6D /* ExpenseDetailView.swift */,
 				9A9119D42AEA491B00CBB8EF /* expenseTrackerApp.swift */,
+				9A4B7AF92B2FF499008C05FC /* ExpenseManager.swift */,
 				9A9F320B2B2FBFB8003F49F6 /* Budget.swift */,
 				9A6A4E6A2B2FB84D00392E6D /* editExpenseView.swift */,
 				9AC6544E2B2FC75B002D57B6 /* categorizationView.swift */,
@@ -178,6 +181,7 @@
 				9A9119D72AEA491B00CBB8EF /* ContentView.swift in Sources */,
 				9A6A4E6B2B2FB84D00392E6D /* editExpenseView.swift in Sources */,
 				9A9F320C2B2FBFB8003F49F6 /* Budget.swift in Sources */,
+				9A4B7AFA2B2FF499008C05FC /* ExpenseManager.swift in Sources */,
 				9A6A4E652B2FB47200392E6D /* QuizView.swift in Sources */,
 				9A9119D52AEA491B00CBB8EF /* expenseTrackerApp.swift in Sources */,
 				9AC6544F2B2FC75B002D57B6 /* categorizationView.swift in Sources */,
