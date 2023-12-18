@@ -147,3 +147,5 @@ struct BudgetSettingView_Previews: PreviewProvider {
             .environmentObject(CategoryManager())
     }
 }
+
+// final commit message - ignore

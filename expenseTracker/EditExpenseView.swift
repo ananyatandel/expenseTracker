@@ -1,5 +1,6 @@
 import SwiftUI
 
+// final commit message - ignore
 struct EditExpenseView: View {
     @Binding var expense: Expense
     @State private var isAmountValid = true

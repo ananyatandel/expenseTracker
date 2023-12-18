@@ -31,3 +31,4 @@ class CategoryManager: ObservableObject {
     }
 }
 
+// final commit message - ignore

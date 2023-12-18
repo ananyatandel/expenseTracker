@@ -3,7 +3,7 @@
 //  expenseTracker
 
 import Foundation
-
+// final commit message - ignore
 
 class ExpenseManager: ObservableObject {
     @Published var expenses: [Expense] = []

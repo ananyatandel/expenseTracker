@@ -51,3 +51,4 @@ class BudgetManager: ObservableObject {
         }
     }
 }
+// final commit message - ignore
