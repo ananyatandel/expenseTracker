@@ -18,9 +18,8 @@ struct expenseTrackerApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(categoryManager)
-            
-            BudgetSettingView(budgetManager: budgetManager)
-                            .environmentObject(categoryManager)
+                .environmentObject(budgetManager)
         }
     }
 }
+
