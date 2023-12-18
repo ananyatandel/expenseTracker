@@ -18,26 +18,26 @@ struct Category: Identifiable {
 
 class BudgetManager: ObservableObject {
     @Published var budgets: [Budget] = []
-
+    
     func setBudget(_ budget: Budget) {
         budgets.append(budget)
         saveBudgets()
     }
-
+    
     private func saveBudgets() {
         let encoder = JSONEncoder()
         if let encodedData = try? encoder.encode(budgets) {
             UserDefaults.standard.set(encodedData, forKey: "budgets")
         }
     }
-
+    
     private func loadBudgets() {
         if let savedData = UserDefaults.standard.data(forKey: "budgets"),
            let decodedBudgets = try? JSONDecoder().decode([Budget].self, from: savedData) {
             budgets = decodedBudgets
         }
     }
-
+    
     init() {
         loadBudgets()
     }
@@ -46,13 +46,12 @@ class BudgetManager: ObservableObject {
 struct CategorizationView: View {
     @ObservedObject var budgetManager: BudgetManager
     @EnvironmentObject var categoryManager: CategoryManager
-
     @State private var categoryName: String = ""
-
+    
     var isCategoryNameValid: Bool {
         !categoryName.trimmingCharacters(in: .whitespaces).isEmpty
     }
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -66,12 +65,10 @@ struct CategorizationView: View {
                                 .font(.largeTitle)
                                 .foregroundColor(.black)
                                 .padding()
-
                             TextField("Enter Custom Category", text: $categoryName)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding()
                                 .foregroundColor(.black)
-
                             Button("Add Category") {
                                 guard isCategoryNameValid else { return }
                                 categoryManager.addCategory(categoryName)
@@ -82,7 +79,6 @@ struct CategorizationView: View {
                             .background(isCategoryNameValid ? Color.green : Color.orange)
                             .cornerRadius(8.0)
                             .padding()
-
                             List(categoryManager.categories, id: \.self) { category in
                                 Text(category)
                                     .font(.headline)
@@ -103,12 +99,10 @@ struct CategorizationView: View {
     }
 }
 
-
 struct CategorizationView_Previews: PreviewProvider {
     static var previews: some View {
         CategorizationView(budgetManager: BudgetManager())
             .environmentObject(CategoryManager())
     }
 }
-
 
