@@ -12,7 +12,7 @@ struct HomeView: View {
 
                 HStack {
                     Spacer()
-                    NavigationLink(destination: LogExpensesView()) {
+                    NavigationLink(destination: LogExpensesView(budgetManager: BudgetManager())) {
                         CircularButton(systemImageName: "square.and.pencil", text: "Log Expenses")
                     }
                     Spacer()
