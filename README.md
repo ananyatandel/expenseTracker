@@ -2,6 +2,7 @@
 Welcome to the Expense Tracker App repository! This project aims to provide users with a comprehensive tool to manage their personal finances effectively. With features like expense logging, categorization, budget setting, and a finance quiz, this app is designed to empower users in their financial journey.
 
 **Features**
+
 Tab 1 - Log Expenses
 In the first tab, users can effortlessly log their personal expenses using a user-friendly form. They can input details such as expense name, date, amount, and an optional description. The app provides a list view of recorded expenses, allowing users to edit or delete entries as needed.
 
